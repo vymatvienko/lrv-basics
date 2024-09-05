@@ -13,40 +13,31 @@ class GroupController extends Controller
 
     public function index()
     {
-        // return view('group.index', [
-        //     'group' => 1,
-        // ]); 
+        // $group = Group::create([
+        //     'id' => 1,
+        //     'title' => 'Гуппа №1',
+        //     'start_from' => '2023-01-10',
+        //     'is_active' => false
+        // ]);
 
-        // Group::insert('insert into groups (id, name) values (?, ?)', [1, 'First group']);
-        Group::table('groups')->upsert(
-            [
-                ['id' => 1, 'name' => 'first group'],
-                ['id' => 2, 'name' => 'second group']
-            ],
-            ['id', 'name'],
-            ['name']
-        );
+        // $group2 = Group::create([
+        //     'id' => 2,
+        //     'title' => 'Гуппа №2',
+        //     'start_from' => '2023-01-10',
+        //     'is_active' => false
+        // ]);
 
         $allGroups = Group::all();
-        // $selectGroups = Group::select('select * from groups');
-        // $test = Group::table('groups')->get();
-        // // dd($allGroups);
-        // foreach ($allGroups as $group) {
-            return view('group.index', [
-                // 'id' => $allGroups->id,
-                // 'title' => $group->title,
-                // 'start_from' => $group->start_from,
-                // 'is_active' => $group->is_active,
-                'group' => $allGroups,
-            ]);
-        // }
-            // <p>id: {{$group->id}}</p>
-        //     <p>Название группы: {{$group->title}}</p>
-        //     <p>Дата начала обучения: {{$group->start_from}}</p>
-        //     <p>Начала ли группа обучение: {{$group->is_active}}</p>
-        // return view('group.index', [
-            
-        // ]);
+        // dump($allGroups[0]->id);
+        foreach ($allGroups as $group) {
+                return view('group.index', [
+                    'id' => $allGroups[1]->id,
+                    'title' => $group->title,
+                    'start_from' => $group->start_from,
+                    'is_active' => $group->is_active,
+                    'group' => $allGroups,
+                ]);
+        };
     }
 
     /**
@@ -54,22 +45,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        // $testGroups = [
-        //     [
-        //         'title' => 'Гуппа №1',
-        //         'start_from' => '2023-01-10',
-        //         'is_active' => false
-        //     ],
-        //     [
-        //         'title' => 'Гуппа №2',
-        //         'start_from' => '2023-01-10',
-        //         'is_active' => false
-        //     ]
-        // ];
 
-        // foreach($testGroups as $group) {
-        //     Group::create($group);
-        // }
     }
 
     /**
