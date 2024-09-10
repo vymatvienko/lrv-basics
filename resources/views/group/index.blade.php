@@ -6,14 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- <h1>{{ $id }}</h1>
-    <h1>{{ $title }}</h1>
-    <h1>{{ $group }}</h1> -->
 
     <h1>Группы:</h1>
 
     @foreach ($group as $oneGroup)
-        <p>id: {{ $oneGroup->id }}, имя: {{ $oneGroup->title }}, дата начала обучения: {{ $oneGroup->start_from }}</p>
+        <a href="groups/{{ $oneGroup->id }}">
+            <p>id: {{ $oneGroup->id }}, название: {{ $oneGroup->title }}, дата начала обучения: {{ $oneGroup->start_from }}</p>
+        </a>
     @endforeach
 
     <a href='groups/create'>Создать новую группу</a>

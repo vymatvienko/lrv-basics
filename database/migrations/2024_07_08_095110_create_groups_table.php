@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('groups', function (Blueprint $table) {
-            $table->id();
+            $table->id()->nullable();
             $table->string('title')->default('');
             $table->string('start_from')->default('');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
-            // $table->created_at();
-            // $table->updated_at();
         });
     }
 

@@ -6,25 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Создание новой группы</h2>
-    <form>
-        <label>
-            <p>Название группы</p>
-            <input name="title"></input>
-        </label>
-        <label>
-            <p>Дата начала обучения</p>
-            <input name="start_from"></input>
-        </label>
-        <label>
-            <p>Группа начала обучение?</p>
-            <input type="radio" name="is_active_yes">да</input>
-            <input type="radio" name="is_active_no">нет</input>
-        </label>
+    <h1>Создание новой группы</h1>
+
+    <form action="{{ route('group.store') }}" method="post">
+        @csrf
+        <div class="form-group">
+            <label for="title">Название группы</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group">
+            <label for="start_from">Дата начала обучения группы</label>
+            <input type="date" class="form-control" name="start_from" id="start_from">
+        </div>
+        <div class="form-group">
+            <label for="is_active">Группа начала обучение?</label>
+            <input type="hidden" id="is_active" name="is_active" value="not active">
+            <input type="checkbox" id="is_active" name="is_active" value="active">
+        </div>
         <br>
-        <br>
-        <br>
-        <button type="submit">Создать группу</button>
+        <button type="submit" class="btn btn-primary">Создать группу</button>
     </form>
+    <br>
+
+    <a class="btn btn-primary" href="/groups">Назад</a>
 </body>
 </html>

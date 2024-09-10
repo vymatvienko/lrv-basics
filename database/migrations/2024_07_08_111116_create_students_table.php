@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->integer('group_id')->default(1);
+            $table->foreignId('group_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('surname')->default('');
             $table->boolean('name')->default('');
             $table->timestamps();

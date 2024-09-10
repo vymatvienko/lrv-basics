@@ -13,28 +13,9 @@ class GroupController extends Controller
 
     public function index()
     {
-        // $group = Group::create([
-        //     'id' => 1,
-        //     'title' => 'Гуппа №1',
-        //     'start_from' => '2023-01-10',
-        //     'is_active' => false
-        // ]);
-
-        // $group2 = Group::create([
-        //     'id' => 2,
-        //     'title' => 'Гуппа №2',
-        //     'start_from' => '2023-01-10',
-        //     'is_active' => false
-        // ]);
-
         $allGroups = Group::all();
-        // dump($allGroups[0]->id);
         foreach ($allGroups as $group) {
                 return view('group.index', [
-                    'id' => $allGroups[1]->id,
-                    'title' => $group->title,
-                    'start_from' => $group->start_from,
-                    'is_active' => $group->is_active,
                     'group' => $allGroups,
                 ]);
         };
@@ -45,7 +26,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-
+        return view('group.create');
     }
 
     /**
@@ -53,23 +34,35 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'start_from' => 'required',
+            'is_active' => 'required',
+        ]);
+
+        Group::create($request->all());
+
+        return redirect()->route('group.index')->with('success','Группа успешно создана');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(group $group)
+    public function show(Group $group, $id)
     {
-        //
+        $group = Group::find($id);
+        $students = $group->students()->get();
+
+        return view('group.show', compact('group', 'students'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(group $group)
+    public function edit($id)
     {
-        //
+        $group = Group::find($id);
+        return view('group.edit', compact('group'));
     }
 
     /**
